@@ -64,8 +64,8 @@ fun part2(file: File): Int {
 
 fun main() {
 
-    val file1 = File("D:\\Polytech\\Bonus\\Kotlin\\advent-of-code\\src\\main\\kotlin\\eu\\bledanois\\day1\\input1.txt")
-    val file2 = File("D:\\Polytech\\Bonus\\Kotlin\\advent-of-code\\src\\main\\kotlin\\eu\\bledanois\\day1\\input2.txt")
+    val file1 = File("src/main/kotlin/eu/bledanois/day1/input1.txt")
+    val file2 = File("src/main/kotlin/eu/bledanois/day1/input2.txt")
 
     println(part1(file1))
     println(part2(file2))

@@ -7,8 +7,9 @@ const val green = 13
 const val blue = 14
 
 
-fun part1(file: File): Int {
+fun part1(file: File): Pair<Int, Int> {
     var sum = 0
+    var sum1 = 0
     var count = 1
     var possible = true
 
@@ -18,6 +19,10 @@ fun part1(file: File): Int {
 
         val setList = sets.split(";")
 
+        var maxRed = 0
+        var maxGreen = 0
+        var maxBlue = 0
+
         for (set in setList) {
             val balls = set.split(",")
 
@@ -26,34 +31,40 @@ fun part1(file: File): Int {
                 val color = ball.split(" ").last()
 
                 when(color) {
-                    "red" -> if (number.toInt() > red) possible= false
-                    "green" -> if (number.toInt() > green) possible= false
-                    "blue" -> if (number.toInt() > blue) possible= false
+                    "red" -> {
+                        if (number.toInt() > red) possible= false
+                        if (maxRed < number.toInt()) maxRed = number.toInt()
+                    }
+                    "green" -> {
+                        if (number.toInt() > green) possible= false
+                        if (maxGreen < number.toInt()) maxGreen = number.toInt()
+                    }
+                    "blue" -> {
+                        if (number.toInt() > blue) possible= false
+                        if (maxBlue < number.toInt()) maxBlue = number.toInt()
+                    }
                 }
-
             }
-            if (!possible)
-                break
         }
+
+
 
         if (possible)
             sum += count
+
+        sum1 += (maxRed * maxGreen * maxBlue)
 
         count ++
         possible = true
     }
 
-    return sum
+    return Pair(sum, sum1)
 }
 
 fun main() {
 
-    val file1 = File("D:\\Polytech\\Bonus\\Kotlin\\advent-of-code\\src\\main\\kotlin\\eu\\bledanois\\day2\\input1.txt")
+    val file1 = File("src/main/kotlin/eu/bledanois/day2/input1.txt")
 
     println(part1(file1))
-    println(part2(file1))
 }
 
-fun part2(file: File): Int {
-    TODO("Not yet implemented")
-}
