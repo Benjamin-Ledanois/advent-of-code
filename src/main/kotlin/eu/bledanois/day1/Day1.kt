@@ -5,18 +5,15 @@ import java.io.File
 fun part1(file: File): Int {
     var sum = 0
     file.readLines().forEach {
-        var firstDigit: String? = null
-        var lastDigit: String? = null
+        val digits = mutableListOf<String>()
 
         for (char in it) {
             if (char.isDigit()) {
-                if (firstDigit == null)
-                    firstDigit = char.toString()
-                lastDigit = char.toString()
+                digits.add(char.toString())
             }
         }
 
-        sum += (firstDigit + lastDigit).toInt()
+        sum += (digits.first() + digits.last()).toInt()
     }
 
     return sum
@@ -27,7 +24,6 @@ fun part2(file: File): Int {
     var sum = 0
 
     val words = mapOf(
-        "zero" to '0',
         "one" to '1',
         "two" to '2',
         "three" to '3',
@@ -43,19 +39,21 @@ fun part2(file: File): Int {
         var i = 0
         val digits = mutableListOf<String>()
 
-        while (i < it.length){
+        while (i < it.length) {
             if (it[i].isDigit())
                 digits.add(it[i].toString())
-            else{
-                for (number in words){
-                    if ((i + number.key.length) < it.length){
+            else {
+                for (number in words) {
+                    if ((i + number.key.length) <= it.length) {
                         val str = it.substring(i, i + number.key.length)
-                        if (str == number.key)
+                        if (str == number.key) {
                             digits.add(number.value.toString())
+                            break
+                        }
                     }
                 }
             }
-            i ++
+            i++
         }
         sum += (digits.first() + digits.last()).toInt()
 
@@ -66,8 +64,8 @@ fun part2(file: File): Int {
 
 fun main() {
 
-    val file1 = File("/home/bledanois/Documents/advent-of-code/src/main/kotlin/eu/bledanois/day1/input1.txt")
-    val file2 = File("/home/bledanois/Documents/advent-of-code/src/main/kotlin/eu/bledanois/day1/input2.txt")
+    val file1 = File("D:\\Polytech\\Bonus\\Kotlin\\advent-of-code\\src\\main\\kotlin\\eu\\bledanois\\day1\\input1.txt")
+    val file2 = File("D:\\Polytech\\Bonus\\Kotlin\\advent-of-code\\src\\main\\kotlin\\eu\\bledanois\\day1\\input2.txt")
 
     println(part1(file1))
     println(part2(file2))
