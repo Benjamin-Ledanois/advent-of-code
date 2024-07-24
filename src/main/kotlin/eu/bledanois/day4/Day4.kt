@@ -54,8 +54,6 @@ fun part2(lines: List<String>): Int {
 
     val games = mutableListOf<Pair<List<String>, List<String>>>()
 
-
-
     lines.forEach { line ->
         val game = line.split(":")[1]
 
@@ -83,6 +81,8 @@ fun part2(lines: List<String>): Int {
     for (i in lines.indices) {
         map.add(1)
     }
+
+
 
     return sum
 }
